@@ -51,6 +51,9 @@ var (
 	// an 'ENDPOINT' configuration, but one is required.
 	ErrMissingEndpointConfig = fmt.Errorf("expected config key endpoint")
 
+	// ErrScriptRunningFailed is returned if the local provider running script was fail
+	ErrScriptRunningFailed = fmt.Errorf("script running failed")
+
 	zeroDuration time.Duration
 
 	hostnamePartsDisallowed = regexp.MustCompile("[^a-zA-Z0-9-]+")

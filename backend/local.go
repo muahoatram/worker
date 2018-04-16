@@ -98,7 +98,7 @@ func (i *localInstance) RunScript(ctx gocontext.Context, writer io.Writer) (*Run
 	select {
 	case err := <-errChan:
 		if err != nil {
-			return &RunResult{Completed: false}, err
+			return &RunResult{Completed: false}, ErrScriptRunningFailed
 		}
 		return &RunResult{Completed: true}, nil
 	case <-ctx.Done():

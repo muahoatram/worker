@@ -63,6 +63,12 @@ func (s *stepRunScript) Run(state multistep.StateBag) multistep.StepAction {
 			return multistep.ActionHalt
 		}
 
+		if errors.Cause(r.err) == backend.ErrScriptRunningFailed {
+			// Mark this build failed
+			state.Put("scriptResult", &backend.RunResult{Completed: false, ExitCode: 1})
+			return multistep.ActionContinue
+		}
+
 		if r.err != nil {
 			if !r.result.Completed {
 				logger.WithFields(logrus.Fields{
